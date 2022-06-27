@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/Users/kentcdodds/Desktop/auth-with-remix-talk/apps/05-get-user/app/routes/jokes/$jokeId.tsx?browser", "../../../../app/routes/jokes/$jokeId.tsx"],
+  "sourcesContent": ["export { default } from \"/Users/kentcdodds/Desktop/auth-with-remix-talk/apps/05-get-user/app/routes/jokes/$jokeId.tsx\";", "import type { LoaderFunction } from \"@remix-run/node\";\nimport { Link, useLoaderData } from \"@remix-run/react\";\nimport type { Joke } from \"@prisma/client\";\nimport { db } from \"~/utils/db.server\";\n\ntype LoaderData = { joke: Joke };\n\nexport const loader: LoaderFunction = async ({ params }) => {\n  const joke = await db.joke.findUnique({\n    where: { id: params.jokeId },\n  });\n  if (!joke) throw new Error(\"Joke not found\");\n  const data: LoaderData = { joke };\n  return data;\n};\n\nexport default function JokeRoute() {\n  const data = useLoaderData<LoaderData>();\n\n  return (\n    <div>\n      <p>Here's your hilarious joke:</p>\n      <p>{data.joke.content}</p>\n      <Link to=\".\">{data.joke.name} Permalink</Link>\n    </div>\n  );\n}\n"],
+  "mappings": ";;;;;;;;;;;;AAAA;;;ACAA;AAGA,gBAAmB;AAaJ,qBAAqB;AAClC,QAAM,OAAO;AAEb,SACE,oCAAC,OAAD,MACE,oCAAC,KAAD,MAAG,gCACH,oCAAC,KAAD,MAAI,KAAK,KAAK,UACd,oCAAC,MAAD;AAAA,IAAM,IAAG;AAAA,KAAK,KAAK,KAAK,MAAK;AAAA;",
+  "names": []
+}

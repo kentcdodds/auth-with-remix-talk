@@ -2,6 +2,7 @@ import type { ActionFunction, LinksFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useActionData, useSearchParams } from "@remix-run/react";
 import { db } from "~/utils/db.server";
+import { safeRedirect } from "~/utils";
 import stylesUrl from "../styles/login.css";
 
 export const links: LinksFunction = () => {
@@ -36,11 +37,11 @@ type ActionData = {
 const badRequest = (data: ActionData) => json(data, { status: 400 });
 
 export const action: ActionFunction = async ({ request }) => {
-  const form = await request.formData();
-  const loginType = form.get("loginType");
-  const username = form.get("username");
-  const password = form.get("password");
-  const redirectTo = form.get("redirectTo") || "/jokes";
+  const formData = await request.formData();
+  const loginType = formData.get("loginType");
+  const username = formData.get("username");
+  const password = formData.get("password");
+  const redirectTo = safeRedirect(formData.get("redirectTo"), "/jokes");
   if (
     typeof loginType !== "string" ||
     typeof username !== "string" ||
@@ -57,8 +58,9 @@ export const action: ActionFunction = async ({ request }) => {
     username: validateUsername(username),
     password: validatePassword(password),
   };
-  if (Object.values(fieldErrors).some(Boolean))
+  if (Object.values(fieldErrors).some(Boolean)) {
     return badRequest({ fieldErrors, fields });
+  }
 
   switch (loginType) {
     case "login": {

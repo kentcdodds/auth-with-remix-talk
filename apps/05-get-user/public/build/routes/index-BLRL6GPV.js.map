@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:/Users/kentcdodds/Desktop/auth-with-remix-talk/apps/03-login/app/routes/index.tsx?browser", "../../../app/routes/index.tsx"],
+  "sourcesContent": ["export { default, links } from \"/Users/kentcdodds/Desktop/auth-with-remix-talk/apps/03-login/app/routes/index.tsx\";", "import type { LinksFunction } from \"@remix-run/node\";\nimport { Link } from \"@remix-run/react\";\nimport stylesUrl from \"../styles/index.css\";\n\nexport const links: LinksFunction = () => {\n  return [\n    {\n      rel: \"stylesheet\",\n      href: stylesUrl,\n    },\n  ];\n};\n\nexport default function Index() {\n  return (\n    <div className=\"container\">\n      <div className=\"content\">\n        <h1>\n          Remix <span>Jokes!</span>\n        </h1>\n        <nav>\n          <ul>\n            <li>\n              <Link to=\"jokes\">Read Jokes</Link>\n            </li>\n          </ul>\n        </nav>\n      </div>\n    </div>\n  );\n}\n"],
+  "mappings": ";;;;;;;AAAA;;;ACAA;;;;;;AAIO,IAAM,QAAuB,MAAM;AACxC,SAAO;AAAA,IACL;AAAA,MACE,KAAK;AAAA,MACL,MAAM;AAAA;AAAA;AAAA;AAKG,iBAAiB;AAC9B,SACE,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,KACb,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,KACb,oCAAC,MAAD,MAAI,UACI,oCAAC,QAAD,MAAM,YAEd,oCAAC,OAAD,MACE,oCAAC,MAAD,MACE,oCAAC,MAAD,MACE,oCAAC,MAAD;AAAA,IAAM,IAAG;AAAA,KAAQ;AAAA;",
+  "names": []
+}
