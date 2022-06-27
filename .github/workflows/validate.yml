@@ -27,9 +27,6 @@ jobs:
       - name: 🏭 Setup
         run: node ./scripts/setup
 
-      - name: ⬣ Lint
-        run: npm run lint
-
       - name: ʦ TypeScript
         run: npm run typecheck
 
