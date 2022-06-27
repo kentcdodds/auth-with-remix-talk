@@ -1,1 +1,0 @@
-import{a as d}from"/build/_shared/chunk-XF54ETW2.js";import{b as i,d as o,e,h as t,j as n}from"/build/_shared/chunk-6NMSYO2M.js";e();e();var p=i(d());function a(){let r=n();return o.createElement("div",null,o.createElement("p",null,"Here's your hilarious joke:"),o.createElement("p",null,r.joke.content),o.createElement(t,{to:"."},r.joke.name," Permalink"))}export{a as default};

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["browser-route-module:/Users/kentcdodds/Desktop/auth-with-remix-talk/apps/03-login/app/routes/jokes/index.tsx?browser", "../../../../app/routes/jokes/index.tsx"],
-  "sourcesContent": ["export { default } from \"/Users/kentcdodds/Desktop/auth-with-remix-talk/apps/03-login/app/routes/jokes/index.tsx\";", "import type { LoaderFunction } from \"@remix-run/node\";\nimport { Link, useLoaderData } from \"@remix-run/react\";\nimport type { Joke } from \"@prisma/client\";\nimport { db } from \"~/utils/db.server\";\n\ntype LoaderData = { randomJoke: Joke };\n\nexport const loader: LoaderFunction = async () => {\n  const count = await db.joke.count();\n  const randomRowNumber = Math.floor(Math.random() * count);\n  const [randomJoke] = await db.joke.findMany({\n    take: 1,\n    skip: randomRowNumber,\n  });\n  const data: LoaderData = { randomJoke };\n  return data;\n};\n\nexport default function JokesIndexRoute() {\n  const data = useLoaderData<LoaderData>();\n\n  return (\n    <div>\n      <p>Here's a random joke:</p>\n      <p>{data.randomJoke.content}</p>\n      <Link to={data.randomJoke.id}>\"{data.randomJoke.name}\" Permalink</Link>\n    </div>\n  );\n}\n"],
-  "mappings": ";;;;;;;;;;;;AAAA;;;ACAA;AAGA,gBAAmB;AAeJ,2BAA2B;AACxC,QAAM,OAAO;AAEb,SACE,oCAAC,OAAD,MACE,oCAAC,KAAD,MAAG,0BACH,oCAAC,KAAD,MAAI,KAAK,WAAW,UACpB,oCAAC,MAAD;AAAA,IAAM,IAAI,KAAK,WAAW;AAAA,KAAI,KAAE,KAAK,WAAW,MAAK;AAAA;",
-  "names": []
-}
