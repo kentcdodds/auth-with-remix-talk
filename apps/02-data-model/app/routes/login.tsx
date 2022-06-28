@@ -1,7 +1,6 @@
 import type { ActionFunction, LinksFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useActionData, useSearchParams } from "@remix-run/react";
-import { db } from "~/utils/db.server";
 import { safeRedirect } from "~/utils";
 import stylesUrl from "../styles/login.css";
 
