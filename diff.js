@@ -5,16 +5,17 @@ const { resolvePath } = require("./scripts/utils");
 let { 2: first, 3: second } = process.argv;
 
 async function go() {
+  if (!second) {
+    second = first;
+    first = (Number(second) - 1).toString();
+  }
   const firstPath = resolvePath(first);
   const secondPath = resolvePath(second);
 
-  cp.spawnSync(
-    `git diff --no-index ${firstPath}/app ${secondPath}/app -- ":(exclude)node_modules"`,
-    {
-      shell: true,
-      stdio: "inherit",
-    }
-  );
+  cp.spawnSync(`git diff --no-index ./${firstPath}/app ./${secondPath}/app`, {
+    shell: true,
+    stdio: "inherit",
+  });
 }
 
 go();
