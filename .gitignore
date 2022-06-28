@@ -3,3 +3,4 @@ node_modules/
 00-playground/
 public/build
 build
+apps/*/prisma/data.db-journal
